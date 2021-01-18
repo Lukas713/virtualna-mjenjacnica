@@ -4,37 +4,36 @@
 <html>
     <head>
         <?php include_once "template/head.php"; ?>
-        <style>
-            .reg {
-                color: black;
-            }
-        </style>
     </head>
 
     <body>
         <?php include_once "template/navigation.php"; ?>
         <br>
+        <?php if(isset($_GET['odgovor'])): ?>
+            <div class="<?= $flashPoruke[$_GET['poruka']]['style'] ?>" role="alert">
+                <?= $flashPoruke[$_GET['poruka']]['poruka']; ?>
+            </div>
+        <?php endif;?>
         <div class="grid-container">
             <div class="row justify-content-md-center">
                 <div class="col col-lg-4">
                     <h3>Login</h3> <hr>
-                    <form action="authorization/login.php" method="post">
+                    <form action="/authorization/login.php" method="post">
                         <div class="form-group">
-                            <label for="email">Enter email</label>
-                            <input type="email" class="form-control" id="email" autocomplete="on" placeholder="admin@admin.com" name="email">
-                            <small id="emailHelp" class="form-text text-muted">Dont share your privacy informations.</small>
+                            <label for="korisnicko_ime">Unesi korisnicko ime</label>
+                            <input type="text" class="form-control" id="korisnicko_ime" name="korisnicko_ime"/>
                         </div>
                         <div class="form-group">
-                            <label for="password">Enter password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <label for="lozinka">Unesi lozinku</label>
+                            <input type="password" class="form-control" id="lozinka" name="lozinka"/>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col">
-                                <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                                <input type="submit" class="btn btn-primary" name="submit" value="Submit"/>
                             </div>
                             <div class="col">
-                                <a class="reg" href="/registration.php" data-toggle="modal" data-target="#exampleModal"><h5>Dont have account?</h5></a>
+                                <a class="reg" href="/registration.php" data-toggle="modal" data-target="#exampleModal"><h5>Nisi se registrirao ?</h5></a>
                             </div>
                             <hr>
                         </div>

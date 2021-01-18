@@ -9,31 +9,38 @@
     <body>
     <?php include_once "template/navigation.php"; ?>
     <br>
+    <?php if(isset($_GET['odgovor'])): ?>
+        <div class="<?= $flashPoruke[$_GET['poruka']]['style'] ?>" role="alert">
+            <?= $flashPoruke[$_GET['poruka']]['poruka']; ?>
+        </div>
+    <?php endif;?>
         <div class="grid-container">
             <div class="row justify-content-md-center">
                 <div class="col col-lg-4">
                     <h3>Registracija</h3> <hr>
-                    <form action="/authorization/register.php" method="post">
+                    <form action="/authorization/registration.php" method="post">
+                        <div class="form-group">
+                            <label for="korisnicko_ime">Unesi korisničko ime</label>
+                            <input type="text" class="form-control" id="korisnicko_ime" name="korisnicko_ime">
+                        </div>
                         <div class="form-group">
                             <label for="email">Unesi email</label>
                             <input type="email" class="form-control" id="email" autocomplete="on" placeholder="admin@admin.com" name="email">
-                            <small id="emailHelp" class="form-text text-muted">Dont share your privacy informations.</small>
                         </div>
                         <div class="form-group">
-                            <label for="password">Unesi lozinku</label>
-                            <input type="password" class="form-control" id="password" autocomplete="new-password" name="password">
+                            <label for="lozinka">Unesi lozinku</label>
+                            <input type="password" class="form-control" id="lozinka" name="lozinka">
                         </div>
                         <div class="form-group">
-                            <label for="repeat_password">Ponovi lozinku</label>
-                            <input type="password" class="form-control" id="repeat_password"  name="repeat_password">
+                            <label for="ime">Unesi ime</label>
+                            <input type="text" class="form-control" id="ime"  name="ime">
                         </div>
                         <div class="form-group">
-                            <label for="firstName">Unesi ime</label>
-                            <input type="text" class="form-control" id="firstName"  name="firstName">
+                            <label for="prezime">Unesi Prezime</label>
+                            <input type="text" class="form-control" id="prezime" name="prezime">
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Unesi Prezime</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName">
+                            <input type="submit" class="form-control" id="submit" name="submit" value="submit">
                         </div>
                         <br>
                     </form>
