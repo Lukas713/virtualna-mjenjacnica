@@ -54,16 +54,16 @@ create table zahtjev
     prihvacen               boolean default false
 );
 
-alter table korisnik add foreign key (tip_korisnika_id) references tip_korisnika(tip_korisnika_id);
+alter table korisnik add foreign key (tip_korisnika_id) references tip_korisnika(tip_korisnika_id) on delete cascade;
 
-alter table valuta add foreign key (moderator_id) references korisnik(korisnik_id);
+alter table valuta add foreign key (moderator_id) references korisnik(korisnik_id) on delete cascade;
 
-alter table sredstva add foreign key (korisnik_id) references korisnik(korisnik_id);
-alter table sredstva add foreign key (valuta_id) references valuta(valuta_id);
+alter table sredstva add foreign key (korisnik_id) references korisnik(korisnik_id) on delete cascade;
+alter table sredstva add foreign key (valuta_id) references valuta(valuta_id) on delete cascade;
 
-alter table zahtjev add foreign key (korisnik_id) references korisnik(korisnik_id);
-alter table zahtjev add foreign key (prodajem_valuta_id) references valuta(valuta_id);
-alter table zahtjev add foreign key (kupujem_valuta_id) references valuta(valuta_id);
+alter table zahtjev add foreign key (korisnik_id) references korisnik(korisnik_id) on delete cascade;
+alter table zahtjev add foreign key (prodajem_valuta_id) references valuta(valuta_id) on delete cascade;
+alter table zahtjev add foreign key (kupujem_valuta_id) references valuta(valuta_id) on delete cascade;
 
 insert into tip_korisnika (tip_korisnika_id, naziv) values (null, 'admin');
 insert into tip_korisnika (tip_korisnika_id, naziv) values (null, 'moderator');

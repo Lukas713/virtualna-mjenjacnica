@@ -10,7 +10,7 @@
                        role="button" aria-haspopup="true" aria-expanded="false">Virtualna mjenjacnica
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/">Naslovnica</a>
+                        <a class="dropdown-item" href="/">Valute</a>
                         <a class="dropdown-item" href="/o_autoru.php">O autoru</a>
                         <?php if(isset($_SESSION['tip_korisnika'])): ?>
                             <a class="dropdown-item" href="/private/user/index.php">Moji iznosi</a>

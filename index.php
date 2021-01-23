@@ -20,6 +20,13 @@ $result = $query->fetchAll(PDO::FETCH_OBJ);
         <?php endif;?>
 
         <div class="container">
+            <?php if (isset($_SESSION['admin'])): ?>
+                <div class="row">
+                    <div class="container">
+                        <a href="/private/admin/createCurrencyForm.php" class="btn btn-primary mb-3" role="button">Kreiraj</a>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="row justify-content-center">
                 <?php foreach ($result as $valuta): ?>
                     <div class="card-deck mb-4 text-center">

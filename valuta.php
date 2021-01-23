@@ -32,30 +32,92 @@
                 return header('location: /login.php' . '?' . http_build_query($response));
             }
 
+            $role = 'notAdmin';
+            if (isset($_SESSION['admin'])) {
+                $role = 'admin';
+            }
         ?>
         <div class="row justify-content-center align-self-center">
             <div class="container align-items-center">
-                <div class="card" style="width: 20rem; margin-left: 36%;">
-                    <img class="card-img-top" src="<?= $valuta->slika; ?>" alt="<?= $valuta->naziv; ?>">
-                    <div class="card-body">
-                        naziv: <h5 class="card-title"><?= $valuta->naziv; ?></h5><br>
-                        tečaj: <h5 class="card-title"><?= $valuta->tecaj; ?></h5><br>
-                        1kn = <?= $valuta->tecaj; ?> <?= $valuta->naziv; ?>
+
+                <form action="/private/admin/updateCurrency.php" method="post">
+                    <div class="form-group">
+                        <label for="naziv">Naziv</label>
+                        <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
+                               class="form-control" id="naziv" value="<?= $valuta->naziv; ?>" name="naziv">
                     </div>
-                    <?php if(isset($_SESSION['tip_korisnika']) && $_SESSION['tip_korisnika'] !== 'korisnik'):?>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">aktivno od: <?= $valuta->aktivno_od; ?></li>
-                            <li class="list-group-item">aktivno do: <?= $valuta->aktivno_do; ?></li>
-                            <li class="list-group-item">datum ažuriranja: <?= $valuta->datum_azuriranja ?></li>
-                        </ul>
-                    <?php  endif; ?>
-                    <div class="card-body">
-                        <?php if ($valuta->zvuk !== ''):?>
-                            <iframe src="<?= $valuta->zvuk; ?>" allow="autoplay"></iframe>
-                        <?php endif; ?>
+                    <div class="form-group">
+                        <label for="tecaj">Tečaj</label>
+                        <input type="number" <?= $role!='admin' ? 'disabled':'' ?>
+                               step="0.01" class="form-control" value="<?= $valuta->tecaj; ?>" id="tecaj" name="tecaj">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="slika">Slika</label>
+                        <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
+                               class="form-control" id="slika" value="<?= $valuta->slika; ?>"  name="slika">
+                    </div>
+                    <div class="form-group">
+                        <label for="zvuk">Himna</label>
+                        <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
+                               class="form-control" id="zvuk" value="<?= $valuta->zvuk; ?>" name="zvuk">
+                    </div>
+                    <div class="form-group">
+                        <label for="aktivno_od">Aktivno od</label>
+                        <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
+                               class="form-control time_picker" id="aktivno_od" name="aktivno_od"
+                            value="<?= date('h.i.s', strtotime($valuta->datum_azuriranja . $valuta->aktivno_od)); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="aktivno_do">Aktivno do</label>
+                        <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
+                               class="form-control time_picker" id="aktivno_do"
+                               value="<?= date('h.i.s', strtotime($valuta->datum_azuriranja . $valuta->aktivno_do)); ?>"
+                               name="aktivno_do">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aktivno_do">Datum ažuriranja</label>
+                        <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
+                               class="form-control time_picker" id="aktivno_do"
+                            value="<?= date('d.m.g', strtotime($valuta->datum_azuriranja)); ?>" name="aktivno_do">
+                    </div>
+                    <?php
+                    $query = $conn->prepare('SELECT a.korisnik_id, a.email FROM korisnik a 
+                                            inner join tip_korisnika b on a.tip_korisnika_id = b.tip_korisnika_id 
+                                            where b.naziv = "moderator"');
+                    $query->execute();
+                    $moderators = $query->fetchAll(PDO::FETCH_OBJ);
+
+                    ?>
+                    <div class="form-group">
+                        <label for="moderator">Rola</label>
+                        <select class="form-control" <?= $role!='admin' ? 'disabled':'' ?> name="moderator" id="moderator">
+                            <?php foreach ($moderators as $moderator):?>
+                                <option value="<?= $moderator->korisnik_id;?>">
+                                    <?= $moderator->email;?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="slika">Slika</label>
+                        <textarea class="form-control" id="slika" name="slika"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" <?= $role!='admin' ? 'disabled':'' ?> class="form-control" id="submit" name="submit" value="submit">
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div class="card-body">
+                            <?php if ($valuta->zvuk !== ''):?>
+                                <iframe src="<?= $valuta->zvuk; ?>" allow="autoplay"></iframe>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <input type="hidden" value="<?= $valuta->valuta_id; ?>" name="id">
+                </form>
             </div>
+        </div>
     </div>
 
         <?php include_once "template/footer.php"; ?>

@@ -24,9 +24,13 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
             $query = $conn->prepare('SELECT * FROM korisnik');
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_OBJ);
-            $X = 3;
         ?>
 
+        <div class="row">
+            <div class="container">
+                <a href="/private/admin/createUserForm.php" class="btn btn-primary mb-3" role="button">Kreiraj</a>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <?php foreach ($result as $user): ?>
                 <div class="card-deck mb-4 text-center">
@@ -43,6 +47,8 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
                                 <li>prezime: <?= $user->prezime; ?></li>
                                 <li>email: <?= $user->email; ?></li>
                                 <li>rola: <?= $user->ime; ?></li>
+                                <li><a href="/private/admin/userInfo.php?id=<?= $user->korisnik_id;?>">Više Informacija</a></li>
+                                <li><a href="/private/admin/deleteUser.php?id=<?= $user->korisnik_id;?>" class="btn btn-danger delete-user" role="button">Obrisi</a></li>
                             </ul>
                         </div>
                     </div>
@@ -54,5 +60,10 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
         <?php include_once "../../template/footer.php"; ?>
 
         <?php include_once "../../template/scripts.php"; ?>
+    <script>
+        $('.delete-user').on('click', function () {
+            return confirm('Jeste li sigurni ?');
+        });
+    </script>
     </body>
 </html>

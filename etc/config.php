@@ -39,6 +39,14 @@ $flashPoruke = [
     7   => [
         'poruka' => 'Id valute nije validan',
         'style' => 'alert alert-danger'
+    ],
+    8   => [
+        'poruka' => 'Uspjesna operacija',
+        'style' => 'alert alert-success'
+    ],
+    9   => [
+        'poruka' => 'Zapis ne postoji',
+        'style' => 'alert alert-danger'
     ]
 ]
 
