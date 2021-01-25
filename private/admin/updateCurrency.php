@@ -29,8 +29,8 @@ if ($result != false) {
 
 $now = date('y-m-d');
 $tecaj = floatval($_POST['tecaj']);
-$aktivnoOd = date('h:i:s', strtotime($now . $_POST['aktivno_od']));
-$aktivnoDo = date('h:i:s', strtotime($now . $_POST['aktivno_do']));
+$aktivnoOd = date('H:i:s', strtotime($now . $_POST['aktivno_od']));
+$aktivnoDo = date('H:i:s', strtotime($now . ' ' .  $_POST['aktivno_do']));
 $query = $conn->prepare('UPDATE valuta set
                     moderator_id=:moderator_id, naziv=:naziv, tecaj=:tecaj, 
                     slika=:slika, zvuk=:zvuk, aktivno_od=:aktivno_od, aktivno_do=:aktivno_do, datum_azuriranja=:datum_azuriranja

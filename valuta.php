@@ -18,6 +18,11 @@
     <div>
         <?php include_once "template/navigation.php"; ?>
         <br>
+        <?php if(isset($_GET['odgovor'])): ?>
+            <div class="<?= $flashPoruke[$_GET['poruka']]['style'] ?>" role="alert">
+                <?= $flashPoruke[$_GET['poruka']]['poruka']; ?>
+            </div>
+        <?php endif;?>
         <?php
             $query = $conn->prepare('select a.* from valuta a where a.valuta_id = :valuta_id');
             $query->execute([
@@ -65,21 +70,20 @@
                         <label for="aktivno_od">Aktivno od</label>
                         <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
                                class="form-control time_picker" id="aktivno_od" name="aktivno_od"
-                            value="<?= date('h.i.s', strtotime($valuta->datum_azuriranja . $valuta->aktivno_od)); ?>">
+                            value="<?= date('H.i.s', strtotime($valuta->datum_azuriranja . $valuta->aktivno_od)); ?>">
                     </div>
                     <div class="form-group">
                         <label for="aktivno_do">Aktivno do</label>
                         <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
-                               class="form-control time_picker" id="aktivno_do"
-                               value="<?= date('h.i.s', strtotime($valuta->datum_azuriranja . $valuta->aktivno_do)); ?>"
-                               name="aktivno_do">
+                               class="form-control time_picker" id="aktivno_do" name="aktivno_do"
+                               value="<?= date('H.i.s', strtotime($valuta->datum_azuriranja . $valuta->aktivno_do)); ?>">
                     </div>
 
                     <div class="form-group">
-                        <label for="aktivno_do">Datum ažuriranja</label>
+                        <label for="datum_azuriranja">Datum ažuriranja</label>
                         <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
-                               class="form-control time_picker" id="aktivno_do"
-                            value="<?= date('d.m.g', strtotime($valuta->datum_azuriranja)); ?>" name="aktivno_do">
+                               class="form-control time_picker" id="datum_azuriranja"
+                            value="<?= date('d.m.g', strtotime($valuta->datum_azuriranja)); ?>" name="datum_azuriranja">
                     </div>
                     <?php
                     $query = $conn->prepare('SELECT a.korisnik_id, a.email FROM korisnik a 

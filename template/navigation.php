@@ -18,6 +18,9 @@
                         <?php if(isset($_SESSION['tip_korisnika']) && $_SESSION['tip_korisnika'] === 'admin'): ?>
                             <a class="dropdown-item" href="/private/admin/users.php">Korisnici</a>
                         <?php endif; ?>
+                        <?php if(isset($_SESSION['tip_korisnika']) && ($_SESSION['tip_korisnika'] === 'admin' || $_SESSION['tip_korisnika'] === 'moderator')): ?>
+                            <a class="dropdown-item" href="/private/moderator/zahtjevi.php">Zahtjevi</a>
+                        <?php endif; ?>
                         <div class="dropdown-divider"></div>
                     </div>
                 </li>

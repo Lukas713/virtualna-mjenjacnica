@@ -52,7 +52,7 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
                     <?php
                     $query = $conn->prepare('SELECT a.korisnik_id, a.email FROM korisnik a 
                                             inner join tip_korisnika b on a.tip_korisnika_id = b.tip_korisnika_id 
-                                            where b.naziv = "moderator"');
+                                            where b.naziv = "moderator" OR b.naziv= "admin"');
                     $query->execute();
                     $moderators = $query->fetchAll(PDO::FETCH_OBJ);
 

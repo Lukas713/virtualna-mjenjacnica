@@ -29,8 +29,8 @@ $result = $query->fetchAll(PDO::FETCH_OBJ);
             <?php endif; ?>
             <div class="row justify-content-center">
                 <?php foreach ($result as $valuta): ?>
-                    <div class="card-deck mb-4 text-center">
-                        <div class="card md-4 shadow-sm">
+                    <div class="card-deck mb-4 ml-1 mr-1 text-center">
+                        <div class="card md-4shadow-sm">
                             <div class="card-header">
                                 <h4 class="my-0 font-weight-normal"><?= $valuta->naziv; ?></h4>
                             </div>

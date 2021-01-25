@@ -39,11 +39,12 @@ $query->bindParam(":ime", $_POST["ime"], PDO::PARAM_STR);
 $query->bindParam(":prezime", $_POST["prezime"], PDO::PARAM_STR);
 $query->bindParam(":email", $_POST["email"], PDO::PARAM_STR);
 $query->execute();
+$id = $conn->lastInsertId();
 $conn->commit();
-
 
 $_SESSION['user'] = $_POST['korisnicko_ime'];
 $_SESSION['tip_korisnika'] = 'user';
+$_SESSION['id_korisnika'] = $id;
 $response = [
     'odgovor' => true,
     'poruka'    => 3

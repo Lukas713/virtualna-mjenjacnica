@@ -8,7 +8,22 @@
         <?php include_once "template/navigation.php"; ?>
         <br>
         <div class="grid-container">
-            ovdje ide sve o autoru
+            <div class="row justify-content-center">
+                    <div class="card-deck mb-4 text-center">
+                        <div class="card md-4 shadow-sm">
+                            <div class="card-body">
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Ime: Bojana</li>
+                                    <li>Prezime: Horvat</li>
+                                    <li>Broj indeksa: </li>
+                                    <li>Email: bhorvat@foi.hr</li>
+                                    <li>Centar: Varaždin</li>
+                                    <li>Godina: 2019/2020.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
 
         <?php include_once "template/footer.php"; ?>
