@@ -41,4 +41,4 @@ $response = [
     'odgovor' => true,
     'poruka' => 8
 ];
-return header('location: /private/user/index.php?' . http_build_query($response));
+return header('location: /private/iznosi/index.php?' . http_build_query($response));

@@ -4,6 +4,7 @@
 <html prefix="og: http://ogp.me/ns#" class="no-js" lang="en" dir="ltr">
     <head>
         <?php include_once "../../template/head.php"; ?>
+        <title>Moji iznosi</title>
     </head>
     <body>
         <?php include_once "../../template/navigation.php"; ?>
@@ -26,7 +27,7 @@
         <div class="container">
             <div class="row">
                 <div class="container">
-                    <a href="/private/user/uploadAmountForm.php" class="btn btn-primary mb-3" role="button">Uplati</a>
+                    <a href="/private/iznosi/uploadForm.php" class="btn btn-primary mb-3" role="button">Uplati</a>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -43,7 +44,7 @@
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">tečaj: <?= $iznos->tecaj; ?></li>
                                     <li class="list-group-item">
-                                        <a href="/private/user/sellAmountForm.php?id=<?= $iznos->sredstva_id; ?>">Prodaj</a>
+                                        <a href="/private/iznosi/sellForm.php?id=<?= $iznos->sredstva_id; ?>">Prodaj</a>
                                     </li>
                                 </ul>
                             </div>

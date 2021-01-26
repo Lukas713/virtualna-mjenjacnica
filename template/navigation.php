@@ -13,18 +13,21 @@
                         <a class="dropdown-item" href="/">Valute</a>
                         <a class="dropdown-item" href="/o_autoru.php">O autoru</a>
                         <?php if(isset($_SESSION['tip_korisnika'])): ?>
-                            <a class="dropdown-item" href="/private/user/index.php">Moji iznosi</a>
+                            <a class="dropdown-item" href="/private/iznosi/index.php">Moji iznosi</a>
                         <?php endif; ?>
                         <?php if(isset($_SESSION['tip_korisnika']) && $_SESSION['tip_korisnika'] === 'admin'): ?>
-                            <a class="dropdown-item" href="/private/admin/users.php">Korisnici</a>
+                            <a class="dropdown-item" href="/private/users/index.php">Korisnici</a>
                         <?php endif; ?>
-                        <?php if(isset($_SESSION['tip_korisnika']) && ($_SESSION['tip_korisnika'] === 'admin' || $_SESSION['tip_korisnika'] === 'moderator')): ?>
-                            <a class="dropdown-item" href="/private/moderator/zahtjevi.php">Zahtjevi</a>
+                        <?php if(isset($_SESSION['tip_korisnika']) && ($_SESSION['tip_korisnika'] === 'admin' || $_SESSION['tip_korisnika'] === 'zahtjevi')): ?>
+                            <a class="dropdown-item" href="/private/zahtjevi/index.php">Zahtjevi</a>
                         <?php endif; ?>
                         <div class="dropdown-divider"></div>
                     </div>
                 </li>
         </ul>
+        <div class="ml-4">
+            <?= isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>
+        </div>
     </div>
     <ul class="nav justify-content-end">
         <?php if(empty($_SESSION) || $_SESSION['tip_korisnika'] === 'anonimni'): ?>

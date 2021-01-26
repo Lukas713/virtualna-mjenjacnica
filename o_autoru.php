@@ -19,6 +19,7 @@
                                     <li>Email: bhorvat@foi.hr</li>
                                     <li>Centar: Varaždin</li>
                                     <li>Godina: 2019/2020.</li>
+                                    <img src="/assets/img/slika.jpg" class="img-fluid" alt="Responsive image">
                                 </ul>
                             </div>
                         </div>

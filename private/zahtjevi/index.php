@@ -6,7 +6,7 @@
     }
 
     $id = $_SESSION['id_korisnika'];
-    $query = $conn->prepare('SELECT a.iznos, a.datum_vrijeme_kreiranja, b.ime, b.prezime, b.email,
+    $query = $conn->prepare('SELECT a.zahtjev_id, a.iznos, a.datum_vrijeme_kreiranja, b.ime, b.prezime, b.email,
        c.naziv as prodajem_naziv, c.tecaj as prodajem_tecaj, d.tecaj as kupujem_tecaj, d.naziv as kupujem_naziv  FROM zahtjev a 
     inner join korisnik b on a.korisnik_id = b.korisnik_id 
     inner join valuta c on a.prodajem_valuta_id = c.valuta_id
@@ -47,6 +47,14 @@
                                 <li>datum i vrijeme kreiranja: <?= $zahtjev->datum_vrijeme_kreiranja; ?></li>
                                 <li>prodajem: <?= $zahtjev->prodajem_naziv . ' (' . $zahtjev->prodajem_tecaj . ')'?></li>
                                 <li>kupujem: <?= $zahtjev->kupujem_naziv . ' (' . $zahtjev->kupujem_tecaj . ')' ?></li>
+                                <li>
+                                    <a class="mr-3 mt-2 btn btn-primary odobri"
+                                       href="/private/zahtjevi/odobri.php?id=<?= $zahtjev->zahtjev_id; ?>">Odobri
+                                    </a>
+                                    <a class="mr-3 mt-2 btn btn-danger odbij"
+                                       href="/private/zahtjevi/odbij.php?id=<?= $zahtjev->zahtjev_id; ?>">Odbij
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -59,5 +67,10 @@
         <?php include_once "../../template/footer.php"; ?>
 
         <?php include_once "../../template/scripts.php"; ?>
+        <script>
+            $('.odbij, .odobri').on('click', function () {
+                return confirm('Jeste li sigurni ?');
+            });
+        </script>
     </body>
 </html>

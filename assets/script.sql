@@ -1,8 +1,8 @@
-drop database if exists virtualna_mjenjacnica;
+drop database if exists iwa_2019_vz_projekt;
 
-create database virtualna_mjenjacnica;
+create database iwa_2019_vz_projekt;
 
-use virtualna_mjenjacnica;
+use iwa_2019_vz_projekt;
 
 create table tip_korisnika
 (

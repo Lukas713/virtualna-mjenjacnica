@@ -16,7 +16,7 @@ if (!$sredstvo) {
         'odgovor' => true,
         'poruka' => 9
     ];
-    return header('location: /private/user/index.php?' . http_build_query($response));
+    return header('location: /private/iznosi/index.php?' . http_build_query($response));
 }
 ?>
 
@@ -37,13 +37,13 @@ if (!$sredstvo) {
 
 <div class="row justify-content-center align-self-center">
     <div class="container align-items-center">
-        <form action="/private/user/sellAmount.php" method="post">
+        <form action="/private/iznosi/sell.php" method="post">
             <div class="form-group">
-                <label for="iznos">Iznos (kn)</label>
+                <label for="iznos">Iznos koji prodajem</label>
                 <input type="number" step="0.01" max="<?= $sredstvo->iznos;?>" class="form-control" id="iznos" name="iznos">
             </div>
             <div class="form-group">
-                <label for="valuta">Valuta</label>
+                <label for="valuta">Valuta koju kupujem</label>
                 <?php
                 $query = $conn->prepare('SELECT distinct * from valuta a where a.valuta_id != :valuta_id');
                 $query->bindParam(':valuta_id', $sredstvo->valuta_id, PDO::PARAM_INT);

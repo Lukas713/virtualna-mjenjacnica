@@ -28,12 +28,12 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
 
         <div class="row">
             <div class="container">
-                <a href="/private/admin/createUserForm.php" class="btn btn-primary mb-3" role="button">Kreiraj</a>
+                <a href="/private/users/createForm.php" class="btn btn-primary mb-3" role="button">Kreiraj</a>
             </div>
         </div>
         <div class="row justify-content-center">
             <?php foreach ($result as $user): ?>
-                <div class="card-deck mb-4 text-center">
+                <div class="card-deck mb-4 ml-1 mr-1 text-center">
                     <div class="card md-4 shadow-sm">
                         <div class="card-header">
                             <h4 class="my-0 font-weight-normal"><?= $user->korisnicko_ime; ?></h4>
@@ -47,8 +47,8 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
                                 <li>prezime: <?= $user->prezime; ?></li>
                                 <li>email: <?= $user->email; ?></li>
                                 <li>rola: <?= $user->ime; ?></li>
-                                <li><a href="/private/admin/userInfo.php?id=<?= $user->korisnik_id;?>">Više Informacija</a></li>
-                                <li><a href="/private/admin/deleteUser.php?id=<?= $user->korisnik_id;?>" class="btn btn-danger delete-user" role="button">Obrisi</a></li>
+                                <li><a href="/private/users/info.php?id=<?= $user->korisnik_id;?>">Više Informacija</a></li>
+                                <li><a href="/private/users/delete.php?id=<?= $user->korisnik_id;?>" class="btn btn-danger delete-user" role="button">Obrisi</a></li>
                             </ul>
                         </div>
                     </div>

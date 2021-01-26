@@ -23,7 +23,7 @@ $result = $query->fetchAll(PDO::FETCH_OBJ);
             <?php if (isset($_SESSION['admin'])): ?>
                 <div class="row">
                     <div class="container">
-                        <a href="/private/admin/createCurrencyForm.php" class="btn btn-primary mb-3" role="button">Kreiraj</a>
+                        <a href="/private/valuta/createForm.php" class="btn btn-primary mb-3" role="button">Kreiraj</a>
                     </div>
                 </div>
             <?php endif; ?>
@@ -42,7 +42,14 @@ $result = $query->fetchAll(PDO::FETCH_OBJ);
                                          height="250">
                                 </h1>
                                 <ul class="list-unstyled mt-3 mb-4">
-                                    <li><a href="/valuta.php?id=<?= $valuta->valuta_id; ?>">Više informacija</a></li>
+                                    <li><a href="/private/valuta/index.php?id=<?= $valuta->valuta_id; ?>">Više informacija</a></li>
+                                    <?php if(isset($_SESSION['admin']) || isset($_SESSION['moderator'])):?>
+                                    <li><a class="btn btn-danger delete mt-3"
+                                           href="/private/valuta/delete.php?id=<?= $valuta->valuta_id; ?>">
+                                            Obriši
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -55,5 +62,10 @@ $result = $query->fetchAll(PDO::FETCH_OBJ);
         <?php include_once "template/footer.php"; ?>
 
         <?php include_once "template/scripts.php"; ?>
+        <script>
+            $('.delete').on('click', function () {
+                return confirm('Jeste li sigurni ?');
+            });
+        </script>
     </body>
 </html>

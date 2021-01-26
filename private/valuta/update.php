@@ -39,12 +39,12 @@ $query = $conn->prepare('UPDATE valuta set
 $conn->beginTransaction();
 $query->bindParam(':naziv', $_POST['naziv']);
 $query->bindParam(':tecaj', $tecaj);
-$query->bindParam(':slika', $_POST['ime']);
+$query->bindParam(':slika', $_POST['slika']);
 $query->bindParam(':zvuk', $_POST['zvuk']);
 $query->bindParam(':aktivno_od', $aktivnoOd);
 $query->bindParam(':aktivno_do', $aktivnoDo);
 $query->bindParam(':datum_azuriranja', $now);
-$query->bindParam(':moderator_id', $_POST['moderator'], PDO::PARAM_INT);
+$query->bindParam(':moderator_id', $_SESSION['id_korisnika'], PDO::PARAM_INT);
 $query->bindParam(':valuta_id', $_POST['id'], PDO::PARAM_INT);
 $query->execute();
 $conn->commit();
@@ -54,4 +54,4 @@ $response = [
     'odgovor' => true,
     'poruka' => 8
 ];
-return header('location: /valuta.php?' . http_build_query($response));
+return header('location: /index.php?' . http_build_query($response));

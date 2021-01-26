@@ -6,7 +6,7 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
 }
 
 if (!isset($_GET['id'])) {
-    return header('location: /private/users.php');
+    return header('location: /private/index.php');
 }
 ?>
 
@@ -38,7 +38,7 @@ if (!isset($_GET['id'])) {
             <div class="card" style="width: 20rem;">
                 <img class="card-img-top" src="<?= $result->slika; ?>" alt="<?= $result->korisnicko_ime; ?>">
                 <div class="card-body">
-                    <form action="/private/admin/updateUser.php" method="post">
+                    <form action="/private/users/update.php" method="post">
                         <div class="form-group">
                             <label for="ime">Ime</label>
                             <input type="text" class="form-control" id="ime" name="ime" value="<?= $result->ime; ?>">

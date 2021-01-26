@@ -8,15 +8,16 @@
     }
 ?>
 
-<?php include_once "etc/config.php"; ?>
+<?php include_once "../../etc/config.php"; ?>
 
 <!doctype html>
 <html prefix="og: http://ogp.me/ns#" class="no-js" lang="en" dir="ltr">
     <head>
-        <?php include_once "template/head.php"; ?>
+        <?php include_once "../../template/head.php"; ?>
+        <title>Valuta</title>
     </head>
     <div>
-        <?php include_once "template/navigation.php"; ?>
+        <?php include_once "../../template/navigation.php"; ?>
         <br>
         <?php if(isset($_GET['odgovor'])): ?>
             <div class="<?= $flashPoruke[$_GET['poruka']]['style'] ?>" role="alert">
@@ -45,7 +46,7 @@
         <div class="row justify-content-center align-self-center">
             <div class="container align-items-center">
 
-                <form action="/private/admin/updateCurrency.php" method="post">
+                <form action="/private/valuta/update.php" method="post">
                     <div class="form-group">
                         <label for="naziv">Naziv</label>
                         <input type="text" <?= $role!='admin' ? 'disabled':'' ?>
@@ -88,7 +89,7 @@
                     <?php
                     $query = $conn->prepare('SELECT a.korisnik_id, a.email FROM korisnik a 
                                             inner join tip_korisnika b on a.tip_korisnika_id = b.tip_korisnika_id 
-                                            where b.naziv = "moderator"');
+                                            where b.naziv = "zahtjevi"');
                     $query->execute();
                     $moderators = $query->fetchAll(PDO::FETCH_OBJ);
 

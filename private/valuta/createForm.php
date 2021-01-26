@@ -24,7 +24,7 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
 
         <div class="row justify-content-center align-self-center">
             <div class="container align-items-center">
-                <form action="/private/admin/createCurrency.php" method="post">
+                <form action="/private/valuta/create.php" method="post">
                     <div class="form-group">
                         <label for="naziv">Naziv</label>
                         <input type="text" class="form-control" id="naziv" name="naziv">
@@ -52,7 +52,7 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
                     <?php
                     $query = $conn->prepare('SELECT a.korisnik_id, a.email FROM korisnik a 
                                             inner join tip_korisnika b on a.tip_korisnika_id = b.tip_korisnika_id 
-                                            where b.naziv = "moderator" OR b.naziv= "admin"');
+                                            where b.naziv = "zahtjevi" OR b.naziv= "admin"');
                     $query->execute();
                     $moderators = $query->fetchAll(PDO::FETCH_OBJ);
 

@@ -2,11 +2,11 @@
 include_once "../../etc/config.php";
 
 if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin') {
-    return header('location: /private/admin/users.php');
+    return header('location: /private/users/index.php');
 }
 
 if (!isset($_POST['id'])) {
-    return header('location: /private/admin/users.php');
+    return header('location: /private/users/index.php');
 }
 
 $query = $conn->prepare('UPDATE korisnik set 
@@ -27,5 +27,5 @@ $response = [
     'odgovor' => true,
     'poruka' => 8
 ];
-return header('location: /private/admin/userInfo.php?' . http_build_query($response));
+return header('location: /private/users/info.php?' . http_build_query($response));
 ?>

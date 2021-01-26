@@ -7,13 +7,13 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
 }
 
 if ($_POST['ime'] === '' || $_POST['tecaj'] === '' || $_POST['aktivno_od'] === '' || $_POST['aktivno_do'] === ''
-    || $_POST['moderator'] === '') {
+    || $_POST['zahtjevi'] === '') {
     $response = [
         'odgovor' => true,
         'poruka' => 1
     ];
 
-    return header('location: /private/admin/users.php?' . http_build_query($response));
+    return header('location: /private/valuta/index.php?' . http_build_query($response));
 }
 
 $date = date('y-m-d');
@@ -39,5 +39,5 @@ $response = [
     'odgovor' => true,
     'poruka' => 8
 ];
-return header('location: /valuta.php?' . http_build_query($response));
+return header('location: /index.php?' . http_build_query($response));
 ?>

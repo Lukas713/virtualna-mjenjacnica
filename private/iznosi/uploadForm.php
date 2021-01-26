@@ -28,7 +28,7 @@ $result = $query->fetchObject();
 
         <div class="row justify-content-center align-self-center">
             <div class="container align-items-center">
-                <form action="/private/user/uploadAmount.php" method="post">
+                <form action="/private/iznosi/upload.php" method="post">
                     <div class="form-group">
                         <label for="iznos">Iznos (kn)</label>
                         <input type="number" step="0.01" class="form-control" id="iznos" name="iznos">

@@ -42,9 +42,10 @@ $query->execute();
 $id = $conn->lastInsertId();
 $conn->commit();
 
-$_SESSION['user'] = $_POST['korisnicko_ime'];
-$_SESSION['tip_korisnika'] = 'user';
+$_SESSION['iznosi'] = $_POST['korisnicko_ime'];
+$_SESSION['tip_korisnika'] = 'iznosi';
 $_SESSION['id_korisnika'] = $id;
+$_SESSION['email'] = $_POST["email"];
 $response = [
     'odgovor' => true,
     'poruka'    => 3

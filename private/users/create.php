@@ -3,7 +3,7 @@
 include_once "../../etc/config.php";
 
 if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin') {
-    return header('location: /private/admin/users.php');
+    return header('location: /private/users/index.php');
 }
 
 if (!isset($_POST['korisnicko_ime'])) {
@@ -12,7 +12,7 @@ if (!isset($_POST['korisnicko_ime'])) {
         'poruka' => 1
     ];
 
-    return header('location: /private/admin/users.php?' . http_build_query($response));
+    return header('location: /private/users/index.php?' . http_build_query($response));
 }
 
 $query = $conn->prepare('SELECT * FROM korisnik a WHERE a.korisnicko_ime=:korisnicko_ime OR a.email=:email');
@@ -25,7 +25,7 @@ if ($result != false) {
         'odgovor' => true,
         'poruka' => 2
     ];
-    return header('location: /private/admin/users.php?' . http_build_query($response));
+    return header('location: /private/users/index.php?' . http_build_query($response));
 }
 
 $conn->beginTransaction();
@@ -50,5 +50,5 @@ $response = [
     'odgovor' => true,
     'poruka' => 8
 ];
-return header('location: /private/admin/userInfo.php?' . http_build_query($response));
+return header('location: /private/users/info.php?' . http_build_query($response));
 ?>

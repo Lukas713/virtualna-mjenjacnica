@@ -25,7 +25,7 @@ if (!isset($_SESSION['tip_korisnika']) || $_SESSION['tip_korisnika'] !== 'admin'
 <div class="row justify-content-center">
     <div class="card" style="width: 20rem;">
         <div class="card-body">
-            <form action="/private/admin/createUser.php" method="post">
+            <form action="/private/users/create.php" method="post">
                 <div class="form-group">
                     <label for="ime">Ime</label>
                     <input type="text" class="form-control" id="ime" name="ime">
