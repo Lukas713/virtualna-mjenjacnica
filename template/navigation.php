@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-0">
                 <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="/"
+                    <a class="text-light dropdown-toggle" data-toggle="dropdown" href="/"
                        role="button" aria-haspopup="true" aria-expanded="false">Virtualna mjenjacnica
                     </a>
                     <div class="dropdown-menu">
@@ -31,9 +31,9 @@
     </div>
     <ul class="nav justify-content-end">
         <?php if(empty($_SESSION) || $_SESSION['tip_korisnika'] === 'anonimni'): ?>
-            <li><a href="/login.php"><i class='fas fa-user-lock'></i> Login</a></li>
+            <li><a class="text-light" href="/login.php"><i class='text-light fas fa-user-lock'></i> Login</a></li>
         <?php else: ?>
-            <li><a href="/authorization/logout.php"><i class='fas fa-unlock-alt'></i> Logout</a></li>
+            <li><a class="text-light" href="/authorization/logout.php"><i class='text-light fas fa-unlock-alt'></i> Logout</a></li>
         <?php endif; ?>
     </ul>
 </nav>
